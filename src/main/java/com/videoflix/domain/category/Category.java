@@ -1,5 +1,6 @@
 package com.videoflix.domain.category;
 
+import com.videoflix.domain.video.UpdateVideoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,15 @@ public class Category {
     public Category(CreateCategoryDTO data) {
         this.title = data.title();
         this.color = data.color();
+    }
+
+    public void update(UpdateCategoryDTO data) {
+        if (data.title() != null) {
+            this.title = data.title();
+        }
+
+        if (data.color() != null) {
+            this.color = data.color();
+        }
     }
 }

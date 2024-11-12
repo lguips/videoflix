@@ -1,10 +1,8 @@
 package com.videoflix.controller;
 
-import com.videoflix.domain.category.Category;
-import com.videoflix.domain.category.CategoryRepository;
-import com.videoflix.domain.category.CreateCategoryDTO;
-import com.videoflix.domain.category.DetailCategoryDTO;
+import com.videoflix.domain.category.*;
 import com.videoflix.domain.video.DetailVideoDTO;
+import com.videoflix.domain.video.UpdateVideoDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,5 +38,13 @@ public class CategoryController {
     public ResponseEntity<DetailCategoryDTO> detail(@PathVariable Long id) {
         var category = repository.getReferenceById(id);
         return ResponseEntity.ok().body(new DetailCategoryDTO(category));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<DetailCategoryDTO> update(@RequestBody @Valid UpdateCategoryDTO data) {
+        var category = repository.getReferenceById(data.id());
+        category.update(data);
+        return ResponseEntity.ok(new DetailCategoryDTO(category));
     }
 }
