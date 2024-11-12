@@ -30,8 +30,14 @@ public class VideoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DetailVideoDTO>> findAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable paginacao) {
-        var page = repository.findAll(paginacao).map(DetailVideoDTO::new);
+    public ResponseEntity<Page<DetailVideoDTO>> findAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pagination) {
+        var page = repository.findAll(pagination).map(DetailVideoDTO::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetailVideoDTO> detail(@PathVariable Long id) {
+        var video = repository.getReferenceById(id);
+        return ResponseEntity.ok().body(new DetailVideoDTO(video));
     }
 }
