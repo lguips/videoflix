@@ -1,6 +1,6 @@
 package com.videoflix.controller;
 
-import com.videoflix.domain.UpdateVideoDTO;
+import com.videoflix.domain.video.UpdateVideoDTO;
 import com.videoflix.domain.video.CreateVideoDTO;
 import com.videoflix.domain.video.DetailVideoDTO;
 import com.videoflix.domain.video.Video;
@@ -31,7 +31,7 @@ public class VideoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DetailVideoDTO>> findAll(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pagination) {
+    public ResponseEntity<Page<DetailVideoDTO>> findAll(@PageableDefault(size = 10, sort = {"title"}) Pageable pagination) {
         var page = repository.findAll(pagination).map(DetailVideoDTO::new);
         return ResponseEntity.ok(page);
     }

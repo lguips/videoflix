@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 public record CreateVideoDTO(
         @NotBlank
-        String titulo,
+        String title,
 
         @NotBlank
-        String descricao,
+        String description,
 
         @NotBlank
         String url

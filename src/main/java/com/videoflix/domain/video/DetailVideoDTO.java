@@ -1,7 +1,7 @@
 package com.videoflix.domain.video;
 
-public record DetailVideoDTO(Long id, String titulo, String descricao, String url) {
+public record DetailVideoDTO(Long id, String title, String description, String url) {
     public DetailVideoDTO(Video video) {
-        this(video.getId(), video.getTitulo(), video.getDescricao(), video.getUrl());
+        this(video.getId(), video.getTitle(), video.getDescription(), video.getUrl());
     }
 }
