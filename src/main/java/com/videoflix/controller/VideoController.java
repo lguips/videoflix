@@ -49,4 +49,11 @@ public class VideoController {
         video.update(data);
         return ResponseEntity.ok(new DetailVideoDTO(video));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> inativar(@PathVariable Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
