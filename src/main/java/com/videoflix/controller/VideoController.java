@@ -44,7 +44,7 @@ public class VideoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity<DetailVideoDTO> atualizar(@RequestBody @Valid UpdateVideoDTO data) {
+    public ResponseEntity<DetailVideoDTO> update(@RequestBody @Valid UpdateVideoDTO data) {
         var video = repository.getReferenceById(data.id());
         video.update(data);
         return ResponseEntity.ok(new DetailVideoDTO(video));
@@ -52,7 +52,7 @@ public class VideoController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> inativar(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
