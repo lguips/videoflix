@@ -1,6 +1,7 @@
 package com.videoflix.domain.category;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,4 +19,9 @@ public class Category {
     private Long id;
     private String title;
     private String color;
+
+    public Category(CreateCategoryDTO data) {
+        this.title = data.title();
+        this.color = data.color();
+    }
 }
