@@ -35,4 +35,10 @@ public class CategoryController {
         var page = repository.findAll(pagination).map(DetailCategoryDTO::new);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetailCategoryDTO> detail(@PathVariable Long id) {
+        var category = repository.getReferenceById(id);
+        return ResponseEntity.ok().body(new DetailCategoryDTO(category));
+    }
 }
